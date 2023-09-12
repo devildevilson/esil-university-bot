@@ -66,7 +66,8 @@ command_manager.prototype.dispatch = async function(msg) {
   setup_locale(msg);
 
   const user_id = message.get_user_id(msg);
-  let [ command_name, data ] = await session.get(user_id);
+  //let [ command_name, data ] = await session.get(user_id);
+  let command_name = await session.get_current(user_id);
   if (!command_name) {
     const text = message.get_text(msg);
     command_name = this.aliases[text];
@@ -90,9 +91,13 @@ command_manager.prototype.dispatch = async function(msg) {
 
   const command = this.commands[command_name];
   // что ожидаем? надо понять нужно ли хранить данные в сессии и надо понять нужно ли отправить последнее сообщение
-  const [ next_data, no_last_message ] = await command.handle(msg, data);
+  const [ next_data, is_current, no_last_message ] = await command.handle(msg, data);
+  
+  if (is_current) await session.set_current(user_id, command_name);
+  else await session.set_current(user_id, undefined);
+
   if (next_data) await session.set(user_id, command_name, next_data);
-  else await session.remove(user_id);
+  else await session.set(user_id, command_name, undefined);
 
   if (!next_data && !no_last_message) {
     const locale = message.get_user_locale(msg);

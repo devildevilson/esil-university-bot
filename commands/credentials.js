@@ -36,7 +36,7 @@ const states = {
       const text = message.get_text(msg);
       if (text.length > 13 || text.length < 11 || !only_digits(text)) {
         await send_message(msg, wrong_iin_key);
-        return [ { state: "process" } ];
+        return [ { state: "process" }, true ];
       }
 
       const info = await plt.find_student_by_iin(text);
@@ -73,12 +73,12 @@ module.exports = {
     if (!data) data = { state: "initial" };
 
     const state = states[data.state];
-    const [ new_data ] = await state.handle(msg, data);
+    const [ new_data, is_current ] = await state.handle(msg, data);
     if (new_data && !states[new_data.state]) throw `Bad state ${new_data.state}`;
     if (new_data && states[new_data.state].start) {
       await states[new_data.state].start(msg, data);
     }
 
-    return [ new_data ];
+    return [ new_data, is_current ];
   },
 };
