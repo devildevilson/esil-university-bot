@@ -8,6 +8,7 @@ const initial_message_key = "credentials.initial_message";
 const wrong_iin_key = "credentials.wrong_iin";
 const user_not_found_key = "credentials.user_not_found";
 const critical_key = "credentials.critical";
+const ok_key = "credentials.ok";
 
 const md5 = data => crypto.createHash("md5").update(data).digest("hex");
 
