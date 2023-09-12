@@ -6,6 +6,7 @@ const t_api = require("../apis/telegram_api");
 const initial_message_key = "settings.initial_message";
 const locales_list_key = "settings.locales";
 const placeholder_key = "settings.lang_input_field_placeholder";
+const success_key = "settings.settings_saving_success";
 
 // для того чтобы настройки сделать, нужно где-то запоминать пользователя
 // поэтому лучше пока наверное это не делать
@@ -57,6 +58,8 @@ module.exports = {
 
     const new_locale = locales_obj[text];
 
+    const str = i18n.t(new_locale, success_key);
+    await t_api.send_message(chat_id, { text: str }); 
     const new_data = { locale: new_locale };
     return [ new_data ];
   },

@@ -1,48 +1,23 @@
 {
-  "main":{
-    "input_field_placeholder":"Select a team",
-    "register_user":"👩‍💼 User verification",
-    "register_request":"📋 Register request",
-    "settings":"⚙️ Settings",
-    "help":"ℹ️ About bot"
-  },
   "command_dispatcher":{
     "last_msg":"Please select a command from the menu",
+    "placeholder":"Select a command",
     "long_time":"You haven't written to me for a long time, could you please select a command from the menu",
     "command_not_found":"Sorry I do not understand you",
     "cancel":"Returning to the main menu",
     "back_to_menu":"🏠 Back to menu"
   },
-  "request_handler":{
-    "problems":{
-      "01":"🌐 Internet problem",
-      "02":"🔌 PC problem",
-      "03":"🖨 Problem with MFP, scanner or printer",
-      "04":"🖥 PC installation",
-      "05":"👨‍💻 Software configuration",
-      "06":"📠 IP telephony",
-      "07":"🧑‍🔧 Other",
-      "08":"8️⃣ Account creation (only for CSO&S) 🙎🏻‍♂️",
-      "09":"Create an account (CSC only)",
-      "10":"Problems with Office 365 (Word, Excel, PowerPoint, etc.)"
-    },
-    "next_page_name":"Next >>",
-    "prev_page_name":"<< Previous",
-    "keyboard_placeholder":"Select request type",
-    "initial_message":"Please select request type ⬇️:",
-    "req_description_message":"Could you please briefly describe your problem",
-    "req_user_data_message":"Could you please provide your full name and contact details in one message (phone or e-mail). \nFor example: Ivanov Ivan +79999999999 ivanov.i@esil.kz",
-    "req_building_message":"Please provide the address of the building you need help with",
-    "req_place_message":"Please enter the number of the room in which you need assistance",
-    "created_req_message":"Request %s has been processed, please use the bot menu again to submit another request\nIf you still have questions, write to Telegram @andrewlemeshev123 or WhatsApp +77476104485",
-    "input_field_placeholder":"Select request type"
+  "credentials":{
+    "name":"📋 Get login and password",
+    "initial_message":"Please send me your IIN",
+    "wrong_iin":"Invalid IIN. Please try again",
+    "user_not_found":"Could not found Platonus user",
+    "critical":"Could not understand Platonus data. Please ask register office (room 206) to make a new password for you",
+    "ok":"Your login: %s \nYour password: %s"
   },
   "settings":{
-    "menu":"📝 Select setting",
-    "choose_lang_menu":"Choose a language",
-    "choose_lang":"🔤 Language Settings",
-    "back":"↩️ Back",
-    "menu_input_field_placeholder":"Select Setting",
+    "name":"🔤 Language Settings",
+    "choose_lang_menu":"Select Language",
     "lang_input_field_placeholder":"Select Language",
     "settings_saving_success":"Settings saved",
     "locales":{
@@ -51,22 +26,12 @@
       "kk":"🇰🇿 Kazakh"
     }
   },
-  "register_user":{
-    "initial_message":"Could you write your IIN",
-    "invalid_iin":"Invalid IIN, could you send it again",
-    "user_not_found":"I can't find you in the system. Are you an applicant and want to enter ESIL University?",
-    "could_not_find_phone":"Your phone number is not set in the platonus database, could you contact the university staff to add the phone number",
-    "sending_sms":"An SMS with a code will be sent to your number %s soon, could you please enter this code below",
-    "sms_content":"Your registration code: %s",
-    "sms_code_incorrect":"Incorrect SMS code entered. Please try again",
-    "sms_code_incorrect_attempts":"Incorrect code entered several times. Returning to the main menu",
-    "registration_success":"You have successfully passed verification! Hello %s",
-    "sms_service_error":"SMS service error, please contact office 125"
+  "start":{
+    "name":"Start",
+    "initial_message":"You are welcomed by the information bot assistant of ESIL University. \nSo far, I only know how to privide you the credentials for the Platonus \nI'll be glad to help!"
   },
-  "start_handler":{
-    "initial_message": "You are welcomed by the information bot assistant of ESIL University. \nSo far, I only know how to accept IT applications on the command \"Register request\" \nI'll be glad to help!"
-  },
-  "help_handler":{
-    "initial_message":"This is an information bot assistant of ESIL University. \nSo far, I only know how to accept IT applications on the command \"Register request\" \nI'll be glad to help!"
+  "about":{
+    "name":"ℹ️ About",
+    "initial_message":"This is an information bot assistant of ESIL University. \nSo far, I only know how to privide you the credentials for the Platonus \nI'll be glad to help!"
   }
 }

@@ -25,7 +25,8 @@ const states = {
   initial: {
     handle: async (msg, data) => {
       await send_message(msg, initial_message_key);
-      return [ { state: "process" } ];
+      const new_data = { state: "process" };
+      return [ new_data, true ];
     },
 
   },
@@ -36,7 +37,8 @@ const states = {
       const text = message.get_text(msg);
       if (text.length > 13 || text.length < 11 || !only_digits(text)) {
         await send_message(msg, wrong_iin_key);
-        return [ { state: "process" }, true ];
+        const new_data = { state: "process" };
+        return [ new_data, true ];
       }
 
       const info = await plt.find_student_by_iin(text);

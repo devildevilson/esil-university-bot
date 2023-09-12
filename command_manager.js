@@ -95,7 +95,6 @@ command_manager.prototype.dispatch = async function(msg) {
   // что ожидаем? надо понять нужно ли хранить данные в сессии и надо понять нужно ли отправить последнее сообщение
   const data = await session.get(user_id, command_name);
   const [ next_data, is_current, no_last_message ] = await command.handle(msg, data);
-  console.log(next_data);
 
   if (is_current) await session.set_current(user_id, command_name);
   else await session.set_current(user_id, undefined);
