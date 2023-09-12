@@ -17,8 +17,9 @@ fastify.route({
   handler: async function (request, reply) {
     reply.code(200).send("ok");
 
-    console.log(request.body);
-    //const ret = await manager.dispath(???);
+    //console.log(request.body);
+    // request.body по идее и есть msg которое мы ожидаем
+    const ret = await manager.dispath(request.body);
 
     return reply;
   },
