@@ -19,7 +19,7 @@ fastify.route({
 
     //console.log(request.body);
     // request.body по идее и есть msg которое мы ожидаем
-    const ret = await manager.dispath(request.body);
+    const ret = await manager.dispatch(request.body);
 
     return reply;
   },
