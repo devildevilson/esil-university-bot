@@ -37,7 +37,7 @@ module.exports = {
     if (!data || !data.status) {
       const reply_keyboard = make_locales_keyboard(locale);
       const str = i18n.t(locale, initial_message_key);
-      await t_api.send_message(chat_id, { text: str, reply_keyboard }); 
+      await t_api.send_message(chat_id, { text: str, reply_markup: reply_keyboard }); 
       return [ { status: "await", locale }, true ];
     }
 
@@ -46,7 +46,7 @@ module.exports = {
     if (!locales_obj[text]) {
       const reply_keyboard = make_locales_keyboard(locale);
       const str = i18n.t(locale, initial_message_key);
-      await t_api.send_message(chat_id, { text: str, reply_keyboard }); 
+      await t_api.send_message(chat_id, { text: str, reply_markup: reply_keyboard }); 
       return [ { status: "await", locale }, true ];
     }
 
