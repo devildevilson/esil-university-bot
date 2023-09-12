@@ -13,7 +13,9 @@ async function setup_locale(msg) {
   const user_id = message.get_user_id(msg);
   // поищем в будущем в базе данных
   const locale = message.get_user_locale(msg);
-  const final_locale = locale === "ru" ? "ru" : (locale === "kk" ? "kk" : "en");
+  const settings_data = await session.get(user_id, "settings");
+  const final_locale = settings_data && settings_data.locale ? settings_data.locale : 
+    (locale === "ru" ? "ru" : (locale === "kk" ? "kk" : "en"));
   message.update_user_locale(msg, final_locale);
 }
 
@@ -91,8 +93,9 @@ command_manager.prototype.dispatch = async function(msg) {
 
   const command = this.commands[command_name];
   // что ожидаем? надо понять нужно ли хранить данные в сессии и надо понять нужно ли отправить последнее сообщение
+  const data = await session.get(user_id, command_name);
   const [ next_data, is_current, no_last_message ] = await command.handle(msg, data);
-  
+
   if (is_current) await session.set_current(user_id, command_name);
   else await session.set_current(user_id, undefined);
 
