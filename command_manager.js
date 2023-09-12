@@ -116,4 +116,4 @@ command_manager.prototype.list = function() {
 
 // команда ждет что мы отправим текущее сообщение, пользователя, состояние команды
 
-module.exports = command_manager;
+module.exports = (...args) => { return new command_manager(...args); };

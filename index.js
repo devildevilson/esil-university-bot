@@ -3,6 +3,8 @@ const t_api = require("./apis/telegram_api");
 const manager = require("./command_manager")("./commands");
 const fastify = require("fastify")({ logger: true });
 
+console.log(manager.list());
+
 fastify.route({
   method: 'GET',
   path: '/',
