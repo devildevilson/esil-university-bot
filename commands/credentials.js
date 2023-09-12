@@ -35,7 +35,7 @@ const states = {
     handle: async (msg, data) => {
       // тут я принимаю иин и пытаюсь понять есть ли такой пользователь в платонусе
       const text = message.get_text(msg);
-      if (text.length > 13 || text.length < 11 || !only_digits(text)) {
+      if (!text || text.length > 13 || text.length < 11 || !only_digits(text)) {
         await send_message(msg, wrong_iin_key);
         const new_data = { state: "process" };
         return [ new_data, true ];
