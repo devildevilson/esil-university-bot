@@ -74,8 +74,8 @@ module.exports = {
 
     const state = states[data.state];
     const [ new_data ] = await state.handle(msg, data);
-    if (!states[new_data.state]) throw `Bad state ${new_data.state}`;
-    if (states[new_data.state].start) {
+    if (new_data && !states[new_data.state]) throw `Bad state ${new_data.state}`;
+    if (new_data && states[new_data.state].start) {
       await states[new_data.state].start(msg, data);
     }
 
