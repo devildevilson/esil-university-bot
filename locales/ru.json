@@ -17,7 +17,7 @@
   },
   "settings":{
     "name":"🔤 Настройки языка",
-    "choose_lang_menu":"Выберите язык",
+    "initial_message":"Выберите язык",
     "lang_input_field_placeholder":"Выберите язык",
     "settings_saving_success":"Настройки сохранены",
     "locales":{

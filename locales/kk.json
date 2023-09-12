@@ -17,7 +17,7 @@
   },
   "settings":{
     "name":"🔤 Тіл параметрлері",
-    "choose_lang_menu":"Тілді таңдау",
+    "initial_message":"Тілді таңдау",
     "lang_input_field_placeholder":"Тілді таңдау",
     "settings_saving_success":"Параметрлер сақталды",
     "locales":{

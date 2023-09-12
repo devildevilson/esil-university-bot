@@ -17,7 +17,7 @@
   },
   "settings":{
     "name":"🔤 Language Settings",
-    "choose_lang_menu":"Select Language",
+    "initial_message":"Select Language",
     "lang_input_field_placeholder":"Select Language",
     "settings_saving_success":"Settings saved",
     "locales":{
