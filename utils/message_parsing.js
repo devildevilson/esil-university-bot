@@ -31,7 +31,7 @@ module.exports = {
       if (msg.callback_query) {
         return msg.callback_query.data.trim();
       } else {
-        return msg.message.text.trim();
+        return msg.message.text ? msg.message.text.trim() : undefined;
       }
     }
 

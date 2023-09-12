@@ -1,5 +1,5 @@
 require("dotenv").config();
-const t_api = require("./apis/telegram_api");
+const message = require("./utils/message_parsing");
 const manager = require("./command_manager")("./commands");
 const fastify = require("fastify")({ logger: true });
 
@@ -20,6 +20,8 @@ fastify.route({
     reply.code(200).send("ok");
 
     //console.log(request.body);
+    if (!message.is_private_chat(request.body)) return reply;
+    
     // request.body по идее и есть msg которое мы ожидаем
     const ret = await manager.dispatch(request.body);
 

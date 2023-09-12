@@ -70,13 +70,12 @@ command_manager.prototype.dispatch = async function(msg) {
   const user_id = message.get_user_id(msg);
   //let [ command_name, data ] = await session.get(user_id);
   let command_name = await session.get_current(user_id);
-  if (!command_name) {
-    const text = message.get_text(msg);
+  const text = message.get_text(msg);
+  if (text && !command_name) {
     command_name = this.aliases[text];
   }
 
-  if (!command_name) {
-    const text = message.get_text(msg);
+  if (text && !command_name) {
     const command_text = text.split(" ")[0];
     command_name = this.aliases[command_text];
   }
