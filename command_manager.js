@@ -65,7 +65,7 @@ let command_manager = function(commands_dir) {
 };
 
 command_manager.prototype.dispatch = async function(msg) {
-  setup_locale(msg);
+  await setup_locale(msg);
 
   const user_id = message.get_user_id(msg);
   //let [ command_name, data ] = await session.get(user_id);
@@ -95,6 +95,7 @@ command_manager.prototype.dispatch = async function(msg) {
   // что ожидаем? надо понять нужно ли хранить данные в сессии и надо понять нужно ли отправить последнее сообщение
   const data = await session.get(user_id, command_name);
   const [ next_data, is_current, no_last_message ] = await command.handle(msg, data);
+  console.log(next_data);
 
   if (is_current) await session.set_current(user_id, command_name);
   else await session.set_current(user_id, undefined);
@@ -102,7 +103,8 @@ command_manager.prototype.dispatch = async function(msg) {
   if (next_data) await session.set(user_id, command_name, next_data);
   else await session.set(user_id, command_name, undefined);
 
-  if (!next_data && !no_last_message) {
+  if (!is_current && !no_last_message) {
+    await setup_locale(msg);
     const locale = message.get_user_locale(msg);
     const msg_str = i18n.t(locale, last_msg_key);
     const reply = common.make_reply_keyboard2(locale, this.command_list_locales[locale], placeholder_key, undefined, true);

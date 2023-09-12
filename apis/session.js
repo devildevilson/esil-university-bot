@@ -4,6 +4,7 @@ async function set_data(user_id, command_name, data) {
   //session_obj[user_id] = { command_name, data };
   if (!session_obj[user_id]) session_obj[user_id] = {};
   session_obj[user_id][command_name] = data;
+  //console.log(user_id, command_name, data);
 }
 
 async function get_data(user_id, command_name) {
@@ -11,7 +12,7 @@ async function get_data(user_id, command_name) {
   //if (!obj) return [ undefined, undefined ];
   //return [ obj.command_name, obj.data ];
   if (!obj) return undefined;
-  return obj.data;
+  return obj[command_name];
 }
 
 async function set_current(user_id, command_name) {

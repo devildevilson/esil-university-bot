@@ -33,25 +33,31 @@ module.exports = {
     // тут в общем то просто строчку отправляем
     const chat_id = message.get_chat_id(msg);
     const locale = data && data.locale ? data.locale : message.get_user_locale(msg);
+    //console.log("settings data:", data);
 
     if (!data || !data.status) {
       const reply_keyboard = make_locales_keyboard(locale);
       const str = i18n.t(locale, initial_message_key);
       await t_api.send_message(chat_id, { text: str, reply_markup: reply_keyboard }); 
-      return [ { status: "await", locale }, true ];
+      const new_data = { status: "await", locale };
+      return [ new_data, true ];
     }
 
     const locales_obj = prepare_locales(locale);
     const text = message.get_text(msg);
+    //console.log(locales_obj);
+    //console.log(text);
     if (!locales_obj[text]) {
       const reply_keyboard = make_locales_keyboard(locale);
       const str = i18n.t(locale, initial_message_key);
       await t_api.send_message(chat_id, { text: str, reply_markup: reply_keyboard }); 
-      return [ { status: "await", locale }, true ];
+      const new_data = { status: "await", locale };
+      return [ new_data, true ];
     }
 
     const new_locale = locales_obj[text];
-    
-    return [ { locale: new_locale } ];
+
+    const new_data = { locale: new_locale };
+    return [ new_data ];
   },
 };
